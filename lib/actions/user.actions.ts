@@ -9,7 +9,7 @@ export const getAllUsersForNewsEmail = async () => {
         const db = mongoose.connection.db
         if(!db) throw new Error('Mongoose connection not connected');
 
-        const users = await db.collection("users").fing(
+        const users = await db.collection("users").find(
             { email: { $exists: true, $ne: null } },
             { projection: { _id: 1, id: 1, email: 1, name: 1, country: 1 } },
         ).toArray();
